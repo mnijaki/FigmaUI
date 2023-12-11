@@ -7,7 +7,6 @@ namespace MN.Runtime.TopBar.View
 
     public class TopBarView : MonoBehaviour, IView
     {
-        // MN:TODO: remove?
         [SerializeField]
         private List<TopBarButtonView> _buttons;
         
@@ -24,6 +23,8 @@ namespace MN.Runtime.TopBar.View
             }
             
             Context = context;
+            
+            // MN:TODO: set initial state of buttons (which one should be selected).
             
             IsInitialized = true;
         }
