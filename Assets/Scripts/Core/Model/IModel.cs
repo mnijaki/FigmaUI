@@ -8,5 +8,6 @@ namespace MN.Core.Model
     /// </summary>
     public interface IModel : IConcern
     {
+        public void Initialize(IContext context, string key = "");
     }
 }

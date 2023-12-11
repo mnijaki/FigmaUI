@@ -10,7 +10,7 @@ namespace MN.Core.Model
         public bool IsInitialized { get; private set; }
         public IContext Context { get; private set; }
 
-        public virtual void Initialize(IContext context)
+        public virtual void Initialize(IContext context, string key = "")
         {
             if(IsInitialized)
             {
@@ -20,7 +20,7 @@ namespace MN.Core.Model
             IsInitialized = true;
             Context = context;
                 
-            Context.ModelLocator.AddItem(this);
+            Context.ModelLocator.AddItem(this, key);
         }
     }
 }

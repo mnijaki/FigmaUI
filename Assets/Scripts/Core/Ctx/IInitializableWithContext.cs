@@ -7,7 +7,5 @@
     {
         public bool IsInitialized { get; }
         public IContext Context { get; }
-
-        public void Initialize(IContext context);
     }
 }

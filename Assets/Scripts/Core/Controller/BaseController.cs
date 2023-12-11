@@ -7,8 +7,8 @@ namespace MN.Core.Controller
     /// </summary>
     public abstract class BaseController<TModel,TView,TService>: IController
     {
-        public bool IsInitialized { get; private set; }
-        public IContext Context { get; private set; }
+        public bool IsInitialized { get; protected set; }
+        public IContext Context { get; protected set; }
 
         protected readonly TModel _model;
         protected readonly TView _view;
@@ -21,15 +21,23 @@ namespace MN.Core.Controller
             _service = service;
         }
 
-        public virtual void Initialize(IContext context)
+        public abstract void Initialize(IContext context);
+    }
+    
+    public abstract class BaseController<TModel,TView>: IController
+    {
+        public bool IsInitialized { get; protected set; }
+        public IContext Context { get; protected set; }
+
+        protected readonly TModel _model;
+        protected readonly TView _view;
+
+        public BaseController(TModel model, TView view)
         {
-            if(IsInitialized)
-            {
-                return;
-            }
-            
-            IsInitialized = true;
-            Context = context;
+            _model = model;
+            _view = view;
         }
+
+        public abstract void Initialize(IContext context);
     }
 }

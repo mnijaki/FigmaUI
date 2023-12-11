@@ -8,5 +8,6 @@ namespace MN.Core.Controller
     /// </summary>
     public interface IController : IConcern
     {
+        public void Initialize(IContext context);
     }
 }

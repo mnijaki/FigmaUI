@@ -6,76 +6,89 @@
 
     public class Locator<TBase>
     {
-        private readonly Dictionary<Type, TBase> _items = new();
+        private Dictionary<Type, Dictionary<string, TBase>> _items = new();
 
         /// <summary>
         ///   Add item based on on it type.
         /// </summary>
         /// <param name="item"></param>
+        /// <param name="key"></param>
         /// <exception cref="Exception"></exception>
-        public void AddItem(TBase item)
+        public void AddItem(TBase item, string key = "")
         {
             Type type = GetLowestType(item.GetType());
-            if (_items.ContainsKey(type))
+            if (!_items.ContainsKey(type))
             {
-                throw new Exception($"Item of type {type.Name} already exists in Locator.");
+                _items[type] = new Dictionary<string, TBase>();
             }
-            
-            _items[type] = item;
+
+            if (!_items[type].ContainsKey(key))
+            {
+                _items[type][key] = item;
+            }
+            else
+            {
+                throw new Exception($"Item of type {type.Name} with key '{key}' already exists.");
+            }
         }
 
         /// <summary>
-        ///   Retrieve item based on it type.
+        ///   Retrieve item based on it type. 
         /// </summary>
+        /// <param name="key"></param>
         /// <typeparam name="TItem"></typeparam>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public TItem GetItem<TItem>() where TItem : TBase
+        public TItem GetItem<TItem>(string key = "") where TItem : TBase
         {
             Type type = GetLowestType(typeof(TItem));
+
             if (type.IsInterface)
             {
                 throw new Exception ($"Cannot get item of type {type.Name}. Interfaces are not allowed for this particular method.");
             }
             
-            if (_items.TryGetValue(type, out TBase item))
+            if (_items.ContainsKey(type) && _items[type].ContainsKey(key))
             {
-                return (TItem)item;
+                return (TItem)_items[type][key];
             }
             
             return default;
         }
 
         /// <summary>
-        ///    Check if locator have Item of given type.
+        ///   Check if locator have Item of given type.
         /// </summary>
+        /// <param name="key"></param>
         /// <typeparam name="TItem"></typeparam>
         /// <returns></returns>
-        public bool HasItem<TItem>() where TItem : TBase
+        public bool HasItem<TItem>(string key = "") where TItem : TBase
         {
-            return GetItem<TItem>() != null;
+            return GetItem<TItem>(key) != null;
         }
 
         /// <summary>
         ///   Remove item from Locator based on its type.
         /// </summary>
+        /// <param name="key"></param>
         /// <typeparam name="TItem"></typeparam>
         /// <exception cref="Exception"></exception>
-        public void RemoveItem<TItem>() where TItem : TBase
+        public void RemoveItem<TItem>(string key = "") where TItem : TBase
         {
             Type type = GetLowestType(typeof(TItem));
+
             if (type.IsInterface)
             {
                 throw new Exception ($"Cannot get item of type {type.Name}. Interfaces are not allowed for this particular method.");
             }
             
-            if (_items.ContainsKey(type))
+            if (_items.ContainsKey(type) && _items[type].ContainsKey(key))
             {
-                _items.Remove(type);
+                _items[type].Remove(key);
             }
             else
             {
-                throw new Exception($"Item of type {type.Name} does not exist in Locator.");
+                throw new Exception($"Item of type {type.Name} with key '{key}' does not exist.");
             }
         }
         

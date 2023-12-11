@@ -7,5 +7,6 @@ namespace MN.Core.Service
     /// </summary>
     public interface IService : IConcern
     {
+        public void Initialize(IContext context);
     }
 }

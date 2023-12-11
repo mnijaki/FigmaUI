@@ -7,5 +7,6 @@ namespace MN.Core.View
     /// </summary>
     public interface IView : IConcern
     {
+        public void Initialize(IContext context);
     }
 }
