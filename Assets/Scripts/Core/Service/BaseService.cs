@@ -1,8 +1,9 @@
 using System;
-using MN.Core.Context;
 
 namespace MN.Core.Service
 {
+    using Ctx;
+
     //  Namespace Properties ------------------------------
 
     //  Class Attributes ----------------------------------

@@ -1,8 +1,8 @@
 
-using MN.Core.Context;
-
 namespace MN.Core.Model
 {
+    using Ctx;
+
     /// <summary>
     /// The Model stores runtime data 
     /// </summary>

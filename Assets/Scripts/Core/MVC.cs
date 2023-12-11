@@ -1,16 +1,16 @@
-using System;
-using MN.Core.Context;
-using MN.Core.Controller;
-using MN.Core.Model;
-using MN.Core.Service;
-using MN.Core.View;
-
 namespace MN.Core
 {
+    using System;
+    using Controller;
+    using Ctx;
+    using View;
+    using Model;
+    using Service;
+
     /// <summary>
-    ///   The MiniMvcs is the parent object containing all <see cref="IConcern"/>s as children.
+    ///   The MVC is the parent object containing all <see cref="IConcern"/>s as children.
     /// </summary>
-    public class MiniMvcs<TContext, TModel, TView, TController, TService> : IMiniMvcs, IDisposable
+    public class MVC<TContext, TModel, TView, TController, TService> : IMVC, IDisposable
         where TContext : IContext 
         where TModel : IModel 
         where TView : IView
@@ -18,7 +18,7 @@ namespace MN.Core
         where TService : IService 
     
     {
-        public TContext Context { get { return _context;} }
+        public TContext ccontext { get { return _context;} }
         public TModel Model { get { return _model;} }
         public TView View { get { return _view;} }
         public TController Controller { get; }protected TContext _context;

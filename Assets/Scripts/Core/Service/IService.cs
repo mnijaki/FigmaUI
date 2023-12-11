@@ -1,8 +1,7 @@
-
-using MN.Core.Context;
-
 namespace MN.Core.Service
 {
+    using Ctx;
+
     /// <summary>
     /// The Service handles external data 
     /// </summary>

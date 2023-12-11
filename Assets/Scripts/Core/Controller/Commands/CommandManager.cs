@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
-using MN.Core.Context;
 
 namespace MN.Core.Controller.Commands
 {
+	using Ctx;
+
 	/// <summary>
 	/// The CommandManager allows to observe and invoke
 	/// <see cref="ICommand"/> instances.

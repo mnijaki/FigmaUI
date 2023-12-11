@@ -1,9 +1,10 @@
 
 using System.Collections.Generic;
-using MN.Core.Context;
 
 namespace MN.Core.Controller.Commands
 {
+    using Ctx;
+
     /// <summary>
     /// This <see cref="IExecutableCommand"/> operates on
     /// a list of <see cref="IExecutableCommand"/> sub-instances

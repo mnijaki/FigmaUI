@@ -1,9 +1,10 @@
 using System;
-using MN.Core.Context;
 using UnityEngine;
 
 namespace MN.Core.Model
 {
+    using Ctx;
+
     //  Namespace Properties ------------------------------
 
     //  Class Attributes ----------------------------------

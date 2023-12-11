@@ -1,15 +1,15 @@
-﻿using MN.Core.Controller.Commands;
-
-namespace MN.Core.Context
+﻿namespace MN.Core.Ctx
 {
+	using Controller.Commands;
+
 	/// <summary>
-	/// The <see cref="IMiniMvcs"/>
+	/// The <see cref="IMVC"/>
 	/// shares one <see cref="Context"/> instance with each of its <see cref="IConcern"/>s so they can co-relate.
 	/// The context provides object lookup functionality through the <see cref="ModelLocator"/> and communication functionality via <see cref="CommandManager"/>.
 	///
 	/// <p>Advanced Use Case</p>
 	/// 
-	/// Two or more <see cref="IMiniMvcs"/> instances which share one <see cref="Context"/> instance can co-relate.
+	/// Two or more <see cref="IMVC"/> instances which share one <see cref="Context"/> instance can co-relate.
 	/// 
 	/// </summary>
 	public class Context : IContext

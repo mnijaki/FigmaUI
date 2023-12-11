@@ -1,7 +1,7 @@
-﻿using MN.Core.Context;
-
-namespace MN.Core.Controller.Commands
+﻿namespace MN.Core.Controller.Commands
 {
+	using Ctx;
+
 	/// <summary>
 	/// Complex type of <see cref="ICommand"/>.
 	///

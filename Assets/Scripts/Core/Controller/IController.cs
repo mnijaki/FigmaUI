@@ -1,8 +1,7 @@
-
-using MN.Core.Context;
-
 namespace MN.Core.Controller
 {
+    using Ctx;
+
     /// <summary>
     /// The Controller coordinates everything between
     /// the <see cref="IConcern"/>s and contains the core app logic 

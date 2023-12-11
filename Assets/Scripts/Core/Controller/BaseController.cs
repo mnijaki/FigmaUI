@@ -1,8 +1,9 @@
 using System;
-using MN.Core.Context;
 
 namespace MN.Core.Controller
 {
+    using Ctx;
+
     //  Namespace Properties ------------------------------
 
     //  Class Attributes ----------------------------------
