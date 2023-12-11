@@ -1,12 +1,5 @@
 {
   "dependencies": {
-    "com.rmc.rmc-mini-mvcs": {
-      "version": "https://github.com/SamuelAsherRivello/rmc-mini-mvcs.git",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "0b6e28af00c2a35ce6ed9bb2a895a7cd2908a79d"
-    },
     "com.unity.2d.animation": {
       "version": "7.0.12",
       "depth": 1,
