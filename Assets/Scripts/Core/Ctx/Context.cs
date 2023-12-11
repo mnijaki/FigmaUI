@@ -20,7 +20,7 @@
 		public Context()
 		{
 			ModelLocator = new ModelLocator();
-			CommandManager = new CommandManager(this);
+			CommandManager = new CommandManager();
 		}
 		   
 		public virtual void Dispose()

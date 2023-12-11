@@ -1,6 +1,6 @@
 ﻿namespace MN.Core.Ctx
 {
-	using MN.Core.Model;
+	using Model;
 
 	/// <summary>
 	/// This Locator manages the storage, lookup, and retrieval of <see cref="IModel"/> objects.

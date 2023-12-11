@@ -8,8 +8,5 @@ namespace MN.Core.Controller
     /// </summary>
     public interface IController : IConcern
     {
-        //  Properties ------------------------------------
-
-        //  Methods ---------------------------------------
     }
 }

@@ -1,7 +1,7 @@
 ﻿namespace MN.Core.Ctx
 {
     using System;
-    using MN.Core.Controller.Commands;
+    using Controller.Commands;
 
     /// <summary>
     ///  See <see cref="Context"/>
