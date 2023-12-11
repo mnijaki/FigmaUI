@@ -13,34 +13,20 @@ namespace MN.Core.Context
 	/// Two or more <see cref="IMiniMvcs"/> instances which share one <see cref="Context"/> instance can co-relate.
 	/// 
 	/// </summary>
-	public class Context : BaseContext
+	public class Context : IContext
 	{
-		protected readonly string _contextKey;
+		public ICommandManager CommandManager { get; }
+		public ModelLocator ModelLocator { get; }
 
-		public Context(string contextKey = "") : base()
+		public Context()
 		{
-			_contextKey = contextKey;
-			if (string.IsNullOrEmpty(_contextKey))
-			{
-				_contextKey = Guid.NewGuid().ToString();
-			}
-			
-			// ContextLocator is Experimental.
-			// This allows any scope, including non-mini classes, to access any Context via ContextLocator.Instance.GetItem<T>();
-			if (ContextLocator.Instance.HasItem<Context>(_contextKey))
-			{
-				throw new Exception($"Context with key '{_contextKey}' already exists. Must pass in unique contextKey.");
-			}
-			
-			ContextLocator.Instance.AddItem(this, _contextKey);
+			ModelLocator = new ModelLocator();
+			CommandManager = new CommandManager(this);
 		}
-		
-		public override void Dispose()
+		   
+		public virtual void Dispose()
 		{
-			if (ContextLocator.Instance.HasItem<Context>(_contextKey))
-			{
-				ContextLocator.Instance.RemoveItem<Context>(_contextKey);
-			}
+			throw new System.NotImplementedException();
 		}
 	}
 }
