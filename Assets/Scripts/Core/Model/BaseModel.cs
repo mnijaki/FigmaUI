@@ -1,55 +1,26 @@
-using System;
-using UnityEngine;
-
 namespace MN.Core.Model
 {
     using Ctx;
 
-    //  Namespace Properties ------------------------------
-
-    //  Class Attributes ----------------------------------
-
     /// <summary>
-    /// The Model stores runtime data 
+    ///   The Model stores runtime data. 
     /// </summary>
     public abstract class BaseModel: IModel
     {
-        //  Events ----------------------------------------
+        public bool IsInitialized { get; private set; }
+        public IContext Context { get; private set; }
 
-
-        //  Properties ------------------------------------
-        public bool IsInitialized { get { return _isInitialized;} }
-        public IContext Context { get { return _context;} }
-
-        //  Fields ----------------------------------------
-        private bool _isInitialized = false;
-        private IContext _context;
-
-        //  Initialization  -------------------------------
         public virtual void Initialize(IContext context)
         {
-            if (!_isInitialized)
+            if(IsInitialized)
             {
-                _isInitialized = true;
-                _context = context;
+                return;
+            }
+            
+            IsInitialized = true;
+            Context = context;
                 
-                // Register Me
-                Context.ModelLocator.AddItem(this);
-            }
+            Context.ModelLocator.AddItem(this);
         }
-
-        public void RequireIsInitialized()
-        {
-            if (!_isInitialized)
-            {
-                throw new Exception("MustBeInitialized");
-            }
-        }
-        
-        //  Methods ---------------------------------------
-
-
-        //  Event Handlers --------------------------------
-
     }
 }
