@@ -1,49 +1,24 @@
-using System;
-
 namespace MN.Core.Service
 {
     using Ctx;
 
-    //  Namespace Properties ------------------------------
-
-    //  Class Attributes ----------------------------------
-
     /// <summary>
-    /// The Service handles external data 
+    ///  The Service handles external data, 
     /// </summary>
     public abstract class BaseService : IService
     {
-        //  Events ----------------------------------------
+        public bool IsInitialized { get; private set; }
+        public IContext Context { get; private set; }
 
-        //  Properties ------------------------------------
-        public bool IsInitialized { get { return _isInitialized;} }
-        public IContext Context { get { return _context;} }
-        
-        //  Fields ----------------------------------------
-        private bool _isInitialized = false;
-        private IContext _context;
-
-        //  Initialization  -------------------------------
         public virtual void Initialize(IContext context)
         {
-            if (!_isInitialized)
+            if(IsInitialized)
             {
-                _isInitialized = true;
-                _context = context;
+                return;
             }
+            
+            IsInitialized = true;
+            Context = context;
         }
-
-        public void RequireIsInitialized()
-        {
-            if (!_isInitialized)
-            {
-                throw new Exception("MustBeInitialized");
-            }
-        }
-        
-        //  Methods ---------------------------------------
-        
-        //  Event Handlers --------------------------------
-
     }
 }
