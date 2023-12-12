@@ -54,7 +54,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _selectedColor: {r: 1, g: 1, b: 1, a: 1}
   _unselectedColor: {r: 0.3137255, g: 0.31764707, b: 0.32156864, a: 1}
-  _hoverColor: {r: 0.2784314, g: 1, b: 0.69411767, a: 1}
+  _hoveredColor: {r: 0.2784314, g: 1, b: 0.69411767, a: 1}
   _buttonIcon: {fileID: 8782819940014412251}
   _diamondIcon: {fileID: 9137318044838934747}
   _txt: {fileID: 8782819940440284663}

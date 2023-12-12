@@ -21,9 +21,11 @@ namespace MN.Runtime.TopBar
 			}
 			
 			Context = context;
-			Context.CommandManager.AddCommandListener<TopBarButtonClickedCommand>(OnTopBarButtonClickedCommand);
-
+			
 			InitializeButtons();
+			SelectButtons();
+			SubscribeToCommands();
+			
 				
 			//
 			//_model.SceneName.Value = SceneManager.GetActiveScene().name;
@@ -36,8 +38,19 @@ namespace MN.Runtime.TopBar
 			//_service.OnLoadCompleted.AddListener(Service_OnLoadCompleted);
 			//_service.Load();
 
-			
 			IsInitialized = true;
+		}
+
+		private void SelectButtons()
+		{
+			_view.Buttons[0].Select();
+			_view.ButtonLong.Select();
+		}
+
+		private void SubscribeToCommands()
+		{
+			Context.CommandManager.AddCommandListener<TopBarButtonClickedCommand>(OnTopBarButtonClickedCommand);
+			Context.CommandManager.AddCommandListener<TopBarButtonLongClickedCommand>(OnTopBarButtonLongClickedCommand);
 		}
 
 		private void InitializeButtons()
@@ -73,6 +86,11 @@ namespace MN.Runtime.TopBar
 			// we want to inject ourselves between the process of clicking.
 			// Example: loading data of shop, closing modal dialogs, etc...
 			// Context.CommandManager.InvokeCommand(new TopBarSelectButtonCommand(command.ClickedButton));
+		}
+		
+		private void OnTopBarButtonLongClickedCommand(TopBarButtonLongClickedCommand command)
+		{
+			// MN:TODO: add logic later
 		}
 	}
 }

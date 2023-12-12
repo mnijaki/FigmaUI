@@ -6,7 +6,6 @@ namespace MN.Runtime.TopBar.View
 	using TMPro;
 	using UI;
 	using UnityEngine;
-	using UnityEngine.Serialization;
 	using UnityEngine.UI;
 
 	public class TopBarButtonLongView : MonoBehaviour, IView
@@ -24,9 +23,14 @@ namespace MN.Runtime.TopBar.View
 		[SerializeField] 
 		private Color _unselectedColor;
 		
-		[FormerlySerializedAs("_hoverColor")]
 		[SerializeField] 
 		private Color _hoveredColor;
+		
+		[SerializeField] 
+		private float _hoveredScaleX = 1.1F;
+		
+		[SerializeField] 
+		private float _clickedScaleX = 0.9F;
 
 		[SerializeField] 
 		private Image _backgroundImage;
@@ -40,12 +44,16 @@ namespace MN.Runtime.TopBar.View
 		[SerializeField]
 		private TMP_Text _txt;
 
-		private bool _isSelected;
+		
+		private Vector2 _hoveredScale;
+		private Vector2 _clickedScale;
 		private Color _previousBackgroundImageColor;
 		private Color _previousBackgroundFillImageColor;
 		private Color _previousLineImageColor;
 		private Color _previousTxtColor;
+		private Vector2 _previousScale;
 
+		
 		public void Initialize(IContext context)
 		{
 			if(IsInitialized)
@@ -54,6 +62,9 @@ namespace MN.Runtime.TopBar.View
 			}
 			
 			Context = context;
+			
+			_hoveredScale = new Vector2(_hoveredScaleX, 1.0F);
+			_clickedScale = new Vector2(_clickedScaleX, 1.0F);
 			
 			Unselect();
 			SubscribeToPointerEvents();
@@ -66,20 +77,30 @@ namespace MN.Runtime.TopBar.View
 			SetButtonState(UIButtonState.Unselected);
 		}
 
-		private void Select()
+		public void Select()
 		{
 			SetButtonState(UIButtonState.Selected);
+			CacheButtonProperties();
 		}
 		
 		private void SubscribeToPointerEvents()
 		{
 			UIPointerHandler pointerHandler = GetComponentInChildren<UIPointerHandler>();
-			pointerHandler.OnPointerClicked += OnPointerClick;
-			pointerHandler.OnPointerEntered += OnPointerEnter;
-			pointerHandler.OnPointerExited += OnPointerExit;
+			pointerHandler.OnPointerClicked += OnPointerClicked;
+			pointerHandler.OnPointerEntered += OnPointerEntered;
+			pointerHandler.OnPointerExited += OnPointerExited;
+			pointerHandler.OnPointerDowned += OnPointerDowned;
+			pointerHandler.OnPointerUpped += OnPointerUpped;
+		}
+		
+		private void OnPointerDowned(UIPointerHandler obj)
+		{
+			Transform trans = transform;
+			_previousScale = trans.localScale;
+			trans.localScale = _clickedScale;
 		}
 
-		private void OnPointerClick(UIPointerHandler pointerHandler)
+		private void OnPointerClicked(UIPointerHandler pointerHandler)
 		{
 			// MN:TODO: animations, sounds, etc...
 			OnClicked?.Invoke(this);
@@ -87,24 +108,19 @@ namespace MN.Runtime.TopBar.View
 			Select();
 		}
 
-		private void OnPointerEnter(UIPointerHandler pointerHandler)
+		private void OnPointerUpped(UIPointerHandler obj)
 		{
-			if(_isSelected)
-			{
-				return;
-			}
-			
+			transform.localScale = _previousScale;
+		}
+
+		private void OnPointerEntered(UIPointerHandler pointerHandler)
+		{
 			CacheButtonProperties();
 			SetButtonState(UIButtonState.Hovered);
 		}
 		
-		private void OnPointerExit(UIPointerHandler pointerHandler)
+		private void OnPointerExited(UIPointerHandler pointerHandler)
 		{
-			if(_isSelected)
-			{
-				return;
-			}
-			
 			RestoreButtonProperties();
 		}
 		
@@ -122,6 +138,7 @@ namespace MN.Runtime.TopBar.View
 			_backgroundFillImage.color = _previousBackgroundFillImageColor;
 			_lineImage.color = _previousLineImageColor;
 			_txt.color = _previousTxtColor;
+			transform.localScale = Vector2.one;
 		}
 		
 		private void SetButtonState(UIButtonState state)
@@ -131,14 +148,13 @@ namespace MN.Runtime.TopBar.View
 			{
 				case UIButtonState.Selected:
 					color = _selectedColor;
-					_isSelected = true;
 					break;
 				case UIButtonState.Unselected:
 					color = _unselectedColor;
-					_isSelected = false;
 					break;
 				case UIButtonState.Hovered:
 					color = _hoveredColor;
+					transform.localScale = _hoveredScale;
 					break;
 			}
 			

@@ -6,7 +6,6 @@ namespace MN.Runtime.TopBar.View
 	using TMPro;
 	using UI;
 	using UnityEngine;
-	using UnityEngine.Serialization;
 	using UnityEngine.UI;
 
 	public class TopBarButtonView : MonoBehaviour, IView
@@ -24,7 +23,6 @@ namespace MN.Runtime.TopBar.View
 		[SerializeField] 
 		private Color _unselectedColor;
 		
-		[FormerlySerializedAs("_hoverColor")]
 		[SerializeField] 
 		private Color _hoveredColor;
 		
@@ -64,7 +62,7 @@ namespace MN.Runtime.TopBar.View
 			SetButtonState(UIButtonState.Unselected);
 		}
 
-		private void Select()
+		public void Select()
 		{
 			SetButtonState(UIButtonState.Selected);
 		}
@@ -72,12 +70,12 @@ namespace MN.Runtime.TopBar.View
 		private void SubscribeToPointerEvents()
 		{
 			UIPointerHandler pointerHandler = GetComponentInChildren<UIPointerHandler>();
-			pointerHandler.OnPointerClicked += OnPointerClick;
-			pointerHandler.OnPointerEntered += OnPointerEnter;
-			pointerHandler.OnPointerExited += OnPointerExit;
+			pointerHandler.OnPointerClicked += OnPointerClicked;
+			pointerHandler.OnPointerEntered += OnPointerEntered;
+			pointerHandler.OnPointerExited += OnPointerExited;
 		}
 
-		private void OnPointerClick(UIPointerHandler pointerHandler)
+		private void OnPointerClicked(UIPointerHandler pointerHandler)
 		{
 			// MN:TODO: animations, sounds, etc...
 			OnClicked?.Invoke(this);
@@ -85,7 +83,7 @@ namespace MN.Runtime.TopBar.View
 			Select();
 		}
 
-		private void OnPointerEnter(UIPointerHandler pointerHandler)
+		private void OnPointerEntered(UIPointerHandler pointerHandler)
 		{
 			if(_isSelected)
 			{
@@ -96,7 +94,7 @@ namespace MN.Runtime.TopBar.View
 			SetButtonState(UIButtonState.Hovered);
 		}
 		
-		private void OnPointerExit(UIPointerHandler pointerHandler)
+		private void OnPointerExited(UIPointerHandler pointerHandler)
 		{
 			if(_isSelected)
 			{

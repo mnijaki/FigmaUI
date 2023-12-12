@@ -1,7 +1,6 @@
 namespace MN.Runtime.UI
 {
 	using System;
-	using UnityEngine;
 	using UnityEngine.EventSystems;
 	using UnityEngine.UI;
 	
@@ -20,13 +19,13 @@ namespace MN.Runtime.UI
 	///   Custom class for handling pointer events.
 	///	  Inherits from Text to allow GraphicRaycaster to work.
 	/// </summary>
-	public class UIPointerHandler : Text, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+	public class UIPointerHandler : Text, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
 	{
 		public event Action<UIPointerHandler> OnPointerClicked;
 		public event Action<UIPointerHandler> OnPointerEntered;
 		public event Action<UIPointerHandler> OnPointerExited;
-		
-		private RectTransform _rectTransform;
+		public event Action<UIPointerHandler> OnPointerDowned;
+		public event Action<UIPointerHandler> OnPointerUpped;
 
 		public void OnPointerClick(PointerEventData eventData)
 		{
@@ -41,6 +40,16 @@ namespace MN.Runtime.UI
 		public void OnPointerExit(PointerEventData eventData)
 		{
 			OnPointerExited?.Invoke(this);
+		}
+
+		public void OnPointerDown(PointerEventData eventData)
+		{
+			OnPointerDowned?.Invoke(this);
+		}
+
+		public void OnPointerUp(PointerEventData eventData)
+		{
+			OnPointerUpped?.Invoke(this);
 		}
 	}
 }
