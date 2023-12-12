@@ -39,7 +39,7 @@ namespace MN.Runtime.UI.BottomBar.Controller
 
 		private void SelectButton()
 		{
-			_view.Buttons[0].Select();
+			_view.Buttons[2].Select();
 		}
 
 		private void SubscribeToCommands()

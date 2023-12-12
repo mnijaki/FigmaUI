@@ -43,7 +43,7 @@ namespace MN.Runtime.UI.TopBar.Controller
 
 		private void SelectButtons()
 		{
-			_view.Buttons[0].Select();
+			_view.Buttons[3].Select();
 			_view.ButtonLong.Select();
 		}
 
