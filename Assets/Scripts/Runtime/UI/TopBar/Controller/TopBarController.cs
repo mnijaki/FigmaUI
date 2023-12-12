@@ -1,11 +1,11 @@
-namespace MN.Runtime.TopBar
+namespace MN.Runtime.UI.TopBar.Controller
 {
-	using System;
 	using Command;
 	using Core.Controller;
 	using Core.Ctx;
-	using UnityEngine;
+	using Model;
 	using View;
+	using Service;
 
 	public class TopBarController : BaseController<TopBarModel, TopBarView, TopBarService> 
 	{

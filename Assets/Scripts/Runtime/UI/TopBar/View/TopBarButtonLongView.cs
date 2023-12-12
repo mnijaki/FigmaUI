@@ -1,10 +1,9 @@
-namespace MN.Runtime.TopBar.View
+namespace MN.Runtime.UI.TopBar.View
 {
 	using System;
 	using Core.Ctx;
 	using Core.View;
 	using TMPro;
-	using UI;
 	using UnityEngine;
 	using UnityEngine.UI;
 

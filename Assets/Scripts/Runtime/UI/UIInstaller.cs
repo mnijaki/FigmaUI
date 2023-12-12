@@ -1,12 +1,14 @@
-namespace MN.UI.Runtime
+namespace MN.Runtime.UI
 {
+	using BackButton.View;
 	using Core;
 	using Core.Ctx;
-	using MN.Runtime.TopBar;
-	using MN.Runtime.TopBar.View;
-	using MN.Runtime.UI.BackButton.View;
+	using TopBar.Controller;
+	using TopBar.Model;
+	using TopBar.Service;
+	using TopBar.View;
 
-	public class Installer : IMVC
+	public class UIInstaller : IMVC
 	{
 		public bool IsInitialized  { get; private set; }
 		public Context Context { get; private set; }
@@ -14,7 +16,7 @@ namespace MN.UI.Runtime
 		private TopBarView _topBarView;
 		private BackButtonView _backButtonView;
 		
-		public Installer(TopBarView topBarView, BackButtonView backButtonView)
+		public UIInstaller(TopBarView topBarView, BackButtonView backButtonView)
 		{
 			_topBarView = topBarView;
 			_backButtonView = backButtonView;

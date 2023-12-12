@@ -1,10 +1,9 @@
-using UnityEngine;
-
 namespace MN.Runtime
 {
-    using MN.UI.Runtime;
-    using TopBar.View;
+    using UI;
     using UI.BackButton.View;
+    using UI.TopBar.View;
+    using UnityEngine;
 
     public class GameManager : MonoBehaviour
     {
@@ -16,8 +15,8 @@ namespace MN.Runtime
         
         protected void Start()
         {
-            Installer installer = new(_topBarView, _backButtonView);
-            installer.Initialize();
+            UIInstaller uiInstaller = new(_topBarView, _backButtonView);
+            uiInstaller.Initialize();
         }
     }
 }

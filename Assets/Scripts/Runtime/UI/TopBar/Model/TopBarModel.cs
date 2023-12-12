@@ -1,4 +1,4 @@
-namespace MN.Runtime.TopBar
+namespace MN.Runtime.UI.TopBar.Model
 {
 	using Core.Model;
 

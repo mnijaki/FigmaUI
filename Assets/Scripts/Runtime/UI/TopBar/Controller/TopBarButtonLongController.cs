@@ -1,8 +1,9 @@
-namespace MN.Runtime.TopBar
+namespace MN.Runtime.UI.TopBar.Controller
 {
 	using Command;
 	using Core.Controller;
 	using Core.Ctx;
+	using Model;
 	using View;
 
 	public class TopBarButtonLongController : BaseController<TopBarButtonLongModel, TopBarButtonLongView>

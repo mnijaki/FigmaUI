@@ -1,4 +1,4 @@
-namespace MN.Runtime.TopBar.View
+namespace MN.Runtime.UI.TopBar.View
 {
     using System.Collections.Generic;
     using System.Linq;
