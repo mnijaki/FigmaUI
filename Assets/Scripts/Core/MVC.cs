@@ -10,7 +10,7 @@ namespace MN.Core
     /// <summary>
     ///   The MVC is the parent object containing all <see cref="IConcern"/>s as children.
     /// </summary>
-    public class MVC<TContext, TModel, TView, TController, TService> : IMVC, IDisposable
+    public abstract class MVC<TContext, TModel, TView, TController, TService> : IMVC, IDisposable
         where TContext : IContext 
         where TModel : IModel 
         where TView : IView
@@ -23,11 +23,7 @@ namespace MN.Core
         public TController Controller  { get; protected set; }
         public TService Service  { get; protected set; }
         public bool IsInitialized  { get; protected set; }
-        
-        public virtual void Initialize()
-        {
-            throw new Exception("MustOverrideMethod");
-        }
+        public abstract void Initialize();
 
         public virtual void Dispose()
         {

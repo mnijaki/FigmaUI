@@ -2,23 +2,22 @@ using UnityEngine;
 
 namespace MN.Runtime
 {
-    using Core.Ctx;
-    using TopBar;
+    using MN.UI.Runtime;
     using TopBar.View;
+    using UI.BackButton.View;
 
     public class GameManager : MonoBehaviour
     {
         [SerializeField]
         private TopBarView _topBarView;
         
-        private Context _context;
+        [SerializeField]
+        private BackButtonView _backButtonView;
         
         protected void Start()
         {
-            _context = new Context();
-            
-            TopBarMVC topBarMVC = new(_context, _topBarView);
-            topBarMVC.Initialize();
+            Installer installer = new(_topBarView, _backButtonView);
+            installer.Initialize();
         }
     }
 }

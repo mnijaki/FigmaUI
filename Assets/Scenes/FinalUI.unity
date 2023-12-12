@@ -438,7 +438,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1028866433}
   - component: {fileID: 1028866437}
-  - component: {fileID: 1028866436}
   - component: {fileID: 1028866434}
   m_Layer: 5
   m_Name: TopBar
@@ -489,14 +488,6 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: 7
   m_LayoutPriority: 1
---- !u!222 &1028866436
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1028866432}
-  m_CullTransparentMesh: 1
 --- !u!114 &1028866437
 MonoBehaviour:
   m_ObjectHideFlags: 0
