@@ -19,14 +19,14 @@ namespace MN.Runtime.UI.TopBar.Controller
 			}
 			
 			Context = context;
-			Context.CommandManager.AddCommandListener<TopBarUnselectButtonCommand>(OnTopBarUnselectButtonCommand);
 			
-			_view.OnClicked += OnClicked;
+			Context.CommandManager.AddCommandListener<TopBarUnselectButtonCommand>(OnTopBarUnselectButtonCommand);
+			_view.OnClicked += OnButtonClicked;
 
 			IsInitialized = true;
 		}
 
-		private void OnClicked(TopBarButtonView view)
+		private void OnButtonClicked(TopBarButtonView view)
 		{
 			Context.CommandManager.InvokeCommand(new TopBarButtonClickedCommand());
 		}

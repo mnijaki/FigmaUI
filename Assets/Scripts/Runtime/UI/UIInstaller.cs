@@ -4,6 +4,8 @@ namespace MN.Runtime.UI
 	using BackButton.View;
 	using Core;
 	using Core.Ctx;
+	using LeftMenu.Controller.Command;
+	using LeftMenu.View;
 	using TopBar.Controller;
 	using TopBar.View;
 
@@ -12,13 +14,15 @@ namespace MN.Runtime.UI
 		public bool IsInitialized  { get; private set; }
 		public Context Context { get; private set; }
 		
-		private TopBarView _topBarView;
-		private BackButtonView _backButtonView;
+		private readonly TopBarView _topBarView;
+		private readonly BackButtonView _backButtonView;
+		private readonly LeftMenuView _leftMenuView;
 		
-		public UIInstaller(TopBarView topBarView, BackButtonView backButtonView)
+		public UIInstaller(TopBarView topBarView, BackButtonView backButtonView, LeftMenuView leftMenuView)
 		{
 			_topBarView = topBarView;
 			_backButtonView = backButtonView;
+			_leftMenuView = leftMenuView;
 		}
 
 		public void Initialize()
@@ -32,6 +36,7 @@ namespace MN.Runtime.UI
 
 			InstallTopBar();
 			InstallBackButton();
+			InstallLeftMenu();
 			
 			IsInitialized = true;
 		}
@@ -48,6 +53,13 @@ namespace MN.Runtime.UI
 			BackButtonController backButtonController = new(_backButtonView);
 			_backButtonView.Initialize(Context);
 			backButtonController.Initialize(Context);
+		}
+		
+		private void InstallLeftMenu()
+		{
+			LeftMenuController leftMenuController = new(_leftMenuView);
+			_leftMenuView.Initialize(Context);
+			leftMenuController.Initialize(Context);
 		}
 	}
 }
