@@ -8,8 +8,8 @@ namespace MN.Runtime.UI
 	#if UNITY_EDITOR
 	using UnityEditor;
 
-	[CustomEditor(typeof(PointerHandler))]
-	public class Touchable_Editor : Editor
+	[CustomEditor(typeof(UIPointerHandler))]
+	public class UIPointerHandler_Editor : Editor
 	{
 		// Override OnInspectorGUI to remove the default Inspector GUI elements.
 		public override void OnInspectorGUI(){}
@@ -20,11 +20,11 @@ namespace MN.Runtime.UI
 	///   Custom class for handling pointer events.
 	///	  Inherits from Text to allow GraphicRaycaster to work.
 	/// </summary>
-	public class PointerHandler : Text, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+	public class UIPointerHandler : Text, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 	{
-		public event Action<PointerHandler> OnPointerClicked;
-		public event Action<PointerHandler> OnPointerEntered;
-		public event Action<PointerHandler> OnPointerExited;
+		public event Action<UIPointerHandler> OnPointerClicked;
+		public event Action<UIPointerHandler> OnPointerEntered;
+		public event Action<UIPointerHandler> OnPointerExited;
 		
 		private RectTransform _rectTransform;
 

@@ -1,16 +1,15 @@
 namespace MN.Runtime.TopBar.View
 {
     using System.Collections.Generic;
+    using System.Linq;
     using Core.Ctx;
     using Core.View;
     using UnityEngine;
 
     public class TopBarView : MonoBehaviour, IView
     {
-        [SerializeField]
-        private List<TopBarButtonView> _buttons;
-        
-        public List<TopBarButtonView> Buttons => _buttons;
+        public List<TopBarButtonView> Buttons { get; private set; }
+        public TopBarButtonLongView ButtonLong { get; private set; }
 
         public bool IsInitialized { get; private set; }
         public IContext Context { get; private set; }
@@ -23,6 +22,9 @@ namespace MN.Runtime.TopBar.View
             }
             
             Context = context;
+
+            Buttons = GetComponentsInChildren<TopBarButtonView>().ToList();
+            ButtonLong = GetComponentInChildren<TopBarButtonLongView>();
             
             // MN:TODO: set initial state of buttons (which one should be selected).
             

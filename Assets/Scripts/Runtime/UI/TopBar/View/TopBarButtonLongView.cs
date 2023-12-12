@@ -9,9 +9,9 @@ namespace MN.Runtime.TopBar.View
 	using UnityEngine.Serialization;
 	using UnityEngine.UI;
 
-	public class TopBarButtonView : MonoBehaviour, IView
+	public class TopBarButtonLongView : MonoBehaviour, IView
 	{
-		public event Action<TopBarButtonView> OnClicked;
+		public event Action<TopBarButtonLongView> OnClicked;
 		
 		public bool IsInitialized { get; private set; }
 		
@@ -27,23 +27,25 @@ namespace MN.Runtime.TopBar.View
 		[FormerlySerializedAs("_hoverColor")]
 		[SerializeField] 
 		private Color _hoveredColor;
+
+		[SerializeField] 
+		private Image _backgroundImage;
 		
-		[SerializeField]
-		private Image _buttonIcon;
-
-		[SerializeField]
-		private Image _diamondIcon;
-
+		[SerializeField] 
+		private Image _backgroundFillImage;
+		
+		[SerializeField] 
+		private Image _lineImage;
+		
 		[SerializeField]
 		private TMP_Text _txt;
 
-		
 		private bool _isSelected;
-		private Color _previousButtonIconColor;
-		private Color _previousDiamondIconColor;
+		private Color _previousBackgroundImageColor;
+		private Color _previousBackgroundFillImageColor;
+		private Color _previousLineImageColor;
 		private Color _previousTxtColor;
-		
-		
+
 		public void Initialize(IContext context)
 		{
 			if(IsInitialized)
@@ -52,7 +54,7 @@ namespace MN.Runtime.TopBar.View
 			}
 			
 			Context = context;
-
+			
 			Unselect();
 			SubscribeToPointerEvents();
 				
@@ -105,18 +107,20 @@ namespace MN.Runtime.TopBar.View
 			
 			RestoreButtonProperties();
 		}
-
+		
 		private void CacheButtonProperties()
 		{
-			_previousButtonIconColor = _buttonIcon.color;
-			_previousDiamondIconColor = _diamondIcon.color;
+			_previousBackgroundImageColor = _backgroundImage.color;
+			_previousBackgroundFillImageColor = _backgroundFillImage.color;
+			_previousLineImageColor = _lineImage.color;
 			_previousTxtColor = _txt.color;
 		}
 		
 		private void RestoreButtonProperties()
 		{
-			_buttonIcon.color = _previousButtonIconColor;
-			_diamondIcon.color = _previousDiamondIconColor;
+			_backgroundImage.color = _previousBackgroundImageColor;
+			_backgroundFillImage.color = _previousBackgroundFillImageColor;
+			_lineImage.color = _previousLineImageColor;
 			_txt.color = _previousTxtColor;
 		}
 		
@@ -126,22 +130,21 @@ namespace MN.Runtime.TopBar.View
 			switch(state)
 			{
 				case UIButtonState.Selected:
-					_diamondIcon.enabled = true;
 					color = _selectedColor;
 					_isSelected = true;
 					break;
 				case UIButtonState.Unselected:
-					_diamondIcon.enabled = false;
 					color = _unselectedColor;
- 					_isSelected = false;
+					_isSelected = false;
 					break;
 				case UIButtonState.Hovered:
 					color = _hoveredColor;
 					break;
 			}
 			
-			_buttonIcon.color = color;
-			_diamondIcon.color = color;
+			_backgroundImage.color = color;
+			_backgroundFillImage.color = color;
+			_lineImage.color = color;
 			_txt.color = color;
 		}
 	}

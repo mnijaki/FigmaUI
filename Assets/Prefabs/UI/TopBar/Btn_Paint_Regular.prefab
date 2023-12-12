@@ -54,7 +54,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _selectedColor: {r: 1, g: 1, b: 1, a: 1}
   _unselectedColor: {r: 0.3137255, g: 0.31764707, b: 0.32156864, a: 1}
-  _hoverColor: {r: 0.2784314, g: 1, b: 0.69411767, a: 1}
+  _hoveredColor: {r: 0.2784314, g: 1, b: 0.69411767, a: 1}
   _buttonIcon: {fileID: 7113763872726384471}
   _diamondIcon: {fileID: 7319955675025380951}
   _txt: {fileID: 7113763872144831355}
@@ -495,14 +495,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5176471, g: 0.5176471, b: 0.5254902, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 642f118ca845baa49b14b11eab283eea, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5fb68d97e03c73e4295c554c9931e9bc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

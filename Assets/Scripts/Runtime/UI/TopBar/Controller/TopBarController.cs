@@ -39,20 +39,30 @@ namespace MN.Runtime.TopBar
 			
 			IsInitialized = true;
 		}
-		
-		public void InitializeButtons()
+
+		private void InitializeButtons()
 		{
+			string key;
 			foreach (TopBarButtonView buttonView in _view.Buttons)
 			{
-				TopBarButtonModel buttonModel = new TopBarButtonModel();
-				string key = buttonView.GetInstanceID().ToString();
+				TopBarButtonModel buttonModel = new();
+				key = buttonView.GetInstanceID().ToString();
 				buttonModel.Initialize(Context, key);
 				
 				buttonView.Initialize(Context);
 				
-				TopBarButtonController controller = new TopBarButtonController(buttonModel, buttonView);
+				TopBarButtonController controller = new(buttonModel, buttonView);
 				controller.Initialize(Context);
 			}
+
+			TopBarButtonLongModel buttonLongModel = new();
+			key = _view.ButtonLong.GetInstanceID().ToString();
+			buttonLongModel.Initialize(Context, key);
+				
+			_view.ButtonLong.Initialize(Context);
+				
+			TopBarButtonLongController controllerLong = new(buttonLongModel, _view.ButtonLong);
+			controllerLong.Initialize(Context);
 		}
 
 		private void OnTopBarButtonClickedCommand(TopBarButtonClickedCommand command)

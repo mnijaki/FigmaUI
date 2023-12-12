@@ -2,7 +2,7 @@ namespace MN.Runtime.TopBar
 {
 	using Core.Model;
 
-	public class TopBarButtonModel : BaseModel
+	public class TopBarButtonLongModel : BaseModel
 	{
 	}
 }
