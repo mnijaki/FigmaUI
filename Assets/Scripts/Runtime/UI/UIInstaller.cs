@@ -4,8 +4,6 @@ namespace MN.Runtime.UI
 	using Core;
 	using Core.Ctx;
 	using TopBar.Controller;
-	using TopBar.Model;
-	using TopBar.Service;
 	using TopBar.View;
 
 	public class UIInstaller : IMVC
@@ -38,12 +36,8 @@ namespace MN.Runtime.UI
 
 		private void InstallTopBar()
 		{
-			TopBarModel topBarModel = new();
-			TopBarService topBarService = new();
-			TopBarController topBarController = new(topBarModel, _topBarView, topBarService);
-			topBarModel.Initialize(Context);
+			TopBarController topBarController = new(_topBarView);
 			_topBarView.Initialize(Context);
-			topBarService.Initialize(Context);
 			topBarController.Initialize(Context);
 		}
 	}

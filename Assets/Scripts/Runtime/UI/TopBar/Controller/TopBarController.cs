@@ -3,13 +3,11 @@ namespace MN.Runtime.UI.TopBar.Controller
 	using Command;
 	using Core.Controller;
 	using Core.Ctx;
-	using Model;
 	using View;
-	using Service;
 
-	public class TopBarController : BaseController<TopBarModel, TopBarView, TopBarService> 
+	public class TopBarController : BaseController<TopBarView> 
 	{
-		public TopBarController(TopBarModel topBarModel, TopBarView topBarView, TopBarService topBarService) : base(topBarModel, topBarView, topBarService)
+		public TopBarController(TopBarView topBarView) : base(topBarView)
 		{
 		}
 		
@@ -25,20 +23,22 @@ namespace MN.Runtime.UI.TopBar.Controller
 			InitializeButtons();
 			SelectButtons();
 			SubscribeToCommands();
-			
-				
-			//
-			//_model.SceneName.Value = SceneManager.GetActiveScene().name;
-                
-			//
-			//_view.OnScorePoints.AddListener(View_OnScorePoints);
-			//_view.OnReset.AddListener(View_OnReset);
-                
-			//
-			//_service.OnLoadCompleted.AddListener(Service_OnLoadCompleted);
-			//_service.Load();
 
 			IsInitialized = true;
+		}
+
+		private void InitializeButtons()
+		{
+			foreach (TopBarButtonView buttonView in _view.Buttons)
+			{
+				buttonView.Initialize(Context);
+				TopBarButtonController controller = new(buttonView);
+				controller.Initialize(Context);
+			}
+				
+			_view.ButtonLong.Initialize(Context);
+			TopBarButtonLongController controllerLong = new(_view.ButtonLong);
+			controllerLong.Initialize(Context);
 		}
 
 		private void SelectButtons()
@@ -51,31 +51,6 @@ namespace MN.Runtime.UI.TopBar.Controller
 		{
 			Context.CommandManager.AddCommandListener<TopBarButtonClickedCommand>(OnTopBarButtonClickedCommand);
 			Context.CommandManager.AddCommandListener<TopBarButtonLongClickedCommand>(OnTopBarButtonLongClickedCommand);
-		}
-
-		private void InitializeButtons()
-		{
-			string key;
-			foreach (TopBarButtonView buttonView in _view.Buttons)
-			{
-				TopBarButtonModel buttonModel = new();
-				key = buttonView.GetInstanceID().ToString();
-				buttonModel.Initialize(Context, key);
-				
-				buttonView.Initialize(Context);
-				
-				TopBarButtonController controller = new(buttonModel, buttonView);
-				controller.Initialize(Context);
-			}
-
-			TopBarButtonLongModel buttonLongModel = new();
-			key = _view.ButtonLong.GetInstanceID().ToString();
-			buttonLongModel.Initialize(Context, key);
-				
-			_view.ButtonLong.Initialize(Context);
-				
-			TopBarButtonLongController controllerLong = new(buttonLongModel, _view.ButtonLong);
-			controllerLong.Initialize(Context);
 		}
 
 		private void OnTopBarButtonClickedCommand(TopBarButtonClickedCommand command)
