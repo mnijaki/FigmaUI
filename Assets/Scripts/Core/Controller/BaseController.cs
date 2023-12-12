@@ -5,36 +5,35 @@ namespace MN.Core.Controller
     /// <summary>
     ///   The Controller coordinates everything between the <see cref="IConcern"/>s and contains the core app logic.
     /// </summary>
-    public abstract class BaseController<TModel,TView,TService>: IController
+    public abstract class BaseController<TModel,TView,TService>: BaseController<TModel, TView>
     {
-        public bool IsInitialized { get; protected set; }
-        public IContext Context { get; protected set; }
-
-        protected readonly TModel _model;
-        protected readonly TView _view;
         protected readonly TService _service;
 
-        public BaseController(TModel model, TView view, TService service)
+        protected BaseController(TModel model, TView view, TService service) : base(model, view)
         {
-            _model = model;
-            _view = view;
             _service = service;
         }
-
-        public abstract void Initialize(IContext context);
     }
     
-    public abstract class BaseController<TModel,TView>: IController
+    public abstract class BaseController<TModel,TView> : BaseController<TView>
+    {
+        protected readonly TModel _model;
+
+        protected BaseController(TModel model, TView view) : base(view)
+        {
+            _model = model;
+        }
+    }
+    
+    public abstract class BaseController<TView>: IController
     {
         public bool IsInitialized { get; protected set; }
         public IContext Context { get; protected set; }
 
-        protected readonly TModel _model;
         protected readonly TView _view;
 
-        public BaseController(TModel model, TView view)
+        protected BaseController(TView view)
         {
-            _model = model;
             _view = view;
         }
 
