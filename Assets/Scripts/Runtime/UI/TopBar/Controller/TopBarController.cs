@@ -5,7 +5,7 @@ namespace MN.Runtime.UI.TopBar.Controller
 	using Core.Ctx;
 	using View;
 
-	public class TopBarController : BaseController<TopBarView> 
+	public class TopBarController : BaseController<TopBarView>
 	{
 		public TopBarController(TopBarView topBarView) : base(topBarView)
 		{

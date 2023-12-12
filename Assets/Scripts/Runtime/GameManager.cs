@@ -2,6 +2,7 @@ namespace MN.Runtime
 {
     using UI;
     using UI.BackButton.View;
+    using UI.BottomBar.View;
     using UI.LeftMenu.View;
     using UI.TopBar.View;
     using UnityEngine;
@@ -17,9 +18,12 @@ namespace MN.Runtime
         [SerializeField]
         private LeftMenuView _leftMenuView;
         
+        [SerializeField]
+        private BottomBarView _bottomBarView;
+        
         protected void Start()
         {
-            UIInstaller uiInstaller = new(_topBarView, _backButtonView, _leftMenuView);
+            UIInstaller uiInstaller = new(_topBarView, _backButtonView, _leftMenuView, _bottomBarView);
             uiInstaller.Initialize();
         }
     }

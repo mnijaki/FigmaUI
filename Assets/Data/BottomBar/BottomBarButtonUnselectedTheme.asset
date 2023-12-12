@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbe74833023f49f48cc2fbc52eaa4977, type: 3}
+  m_Name: BottomBarButtonUnselectedTheme
+  m_EditorClassIdentifier: 
+  <DownloadNowBackgroundImageColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+  <DownloadNowImageColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+  <DownloadNowTxtColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+  <GetDataBackgroundImageColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+  <GetDataNowImageColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+  <GetDataNowTxtColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+  <BackgroundColor>k__BackingField: {r: 0.16862746, g: 0.18039216, b: 0.21176472, a: 1}
+  <BottomLineColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+  <StatsLineLongImageColor>k__BackingField: {r: 0.33333334, g: 0.34509805, b: 0.3647059, a: 1}
+  <StatsLineShortImageColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+  <SkinImageColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+  <SetSkinImage1Color>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+  <SetSkinImage2Color>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+  <SetSkinImage3Color>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+  <SetCircleImageColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+  <SkinNameTxtColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+  <CostImageColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+  <PriceTxtColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
