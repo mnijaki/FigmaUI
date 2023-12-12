@@ -10,7 +10,6 @@ namespace MN.Runtime.UI.TopBar.View
     {
         public List<TopBarButtonView> Buttons { get; private set; }
         public TopBarButtonLongView ButtonLong { get; private set; }
-
         public bool IsInitialized { get; private set; }
         public IContext Context { get; private set; }
 

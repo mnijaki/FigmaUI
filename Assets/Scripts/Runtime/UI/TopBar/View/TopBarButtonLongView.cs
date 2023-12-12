@@ -12,37 +12,26 @@ namespace MN.Runtime.UI.TopBar.View
 		public event Action<TopBarButtonLongView> OnClicked;
 		
 		public bool IsInitialized { get; private set; }
-		
 		public IContext Context { get; private set; }
-		
 		
 		[SerializeField] 
 		private Color _selectedColor;
-		
 		[SerializeField] 
 		private Color _unselectedColor;
-		
 		[SerializeField] 
 		private Color _hoveredColor;
-		
 		[SerializeField] 
 		private float _hoveredScaleX = 1.1F;
-		
 		[SerializeField] 
 		private float _clickedScaleX = 0.9F;
-
 		[SerializeField] 
 		private Image _backgroundImage;
-		
 		[SerializeField] 
 		private Image _backgroundFillImage;
-		
 		[SerializeField] 
 		private Image _lineImage;
-		
 		[SerializeField]
 		private TMP_Text _txt;
-
 		
 		private Vector2 _hoveredScale;
 		private Vector2 _clickedScale;
@@ -51,7 +40,6 @@ namespace MN.Runtime.UI.TopBar.View
 		private Color _previousLineImageColor;
 		private Color _previousTxtColor;
 		private Vector2 _previousScale;
-
 		
 		public void Initialize(IContext context)
 		{

@@ -12,34 +12,25 @@ namespace MN.Runtime.UI.TopBar.View
 		public event Action<TopBarButtonView> OnClicked;
 		
 		public bool IsInitialized { get; private set; }
-		
 		public IContext Context { get; private set; }
-		
 		
 		[SerializeField] 
 		private Color _selectedColor;
-		
 		[SerializeField] 
 		private Color _unselectedColor;
-		
 		[SerializeField] 
 		private Color _hoveredColor;
-		
 		[SerializeField]
 		private Image _buttonIcon;
-
 		[SerializeField]
 		private Image _diamondIcon;
-
 		[SerializeField]
 		private TMP_Text _txt;
-
 		
 		private bool _isSelected;
 		private Color _previousButtonIconColor;
 		private Color _previousDiamondIconColor;
 		private Color _previousTxtColor;
-		
 		
 		public void Initialize(IContext context)
 		{

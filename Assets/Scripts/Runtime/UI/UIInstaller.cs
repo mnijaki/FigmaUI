@@ -1,5 +1,6 @@
 namespace MN.Runtime.UI
 {
+	using BackButton.Controller;
 	using BackButton.View;
 	using Core;
 	using Core.Ctx;
@@ -30,6 +31,7 @@ namespace MN.Runtime.UI
 			Context = new Context();
 
 			InstallTopBar();
+			InstallBackButton();
 			
 			IsInitialized = true;
 		}
@@ -39,6 +41,13 @@ namespace MN.Runtime.UI
 			TopBarController topBarController = new(_topBarView);
 			_topBarView.Initialize(Context);
 			topBarController.Initialize(Context);
+		}
+
+		private void InstallBackButton()
+		{
+			BackButtonController backButtonController = new(_backButtonView);
+			_backButtonView.Initialize(Context);
+			backButtonController.Initialize(Context);
 		}
 	}
 }
