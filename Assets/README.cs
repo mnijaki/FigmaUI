@@ -33,6 +33,7 @@ namespace MN
 			- I would refactor some of the code, leaning more towards loose coupling (eg using more Interfaces and etc)
 			  This would make the code more testable.
 			- I would like to add some base classes for common functionalities (eg. custom button)
+			- Classes should be further divided into assemblies.
 			
 		  AS for task itself:
 			- I wasn't sure what exactly should I implement in the task, so I implemented what I thought was needed.	
