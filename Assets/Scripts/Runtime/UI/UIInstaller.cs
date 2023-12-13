@@ -8,6 +8,8 @@ namespace MN.Runtime.UI
 	using Core.Ctx;
 	using LeftMenu.Controller.Command;
 	using LeftMenu.View;
+	using LimitedOffer.Controller;
+	using LimitedOffer.View;
 	using TopBar.Controller;
 	using TopBar.View;
 
@@ -20,13 +22,16 @@ namespace MN.Runtime.UI
 		private readonly BackButtonView _backButtonView;
 		private readonly LeftMenuView _leftMenuView;
 		private readonly BottomBarView _bottomBarView;
+		private readonly LimitedOfferView _limitedOfferView;
 		
-		public UIInstaller(TopBarView topBarView, BackButtonView backButtonView, LeftMenuView leftMenuView, BottomBarView bottomBarView)
+		public UIInstaller(TopBarView topBarView, BackButtonView backButtonView, LeftMenuView leftMenuView, 
+		                   BottomBarView bottomBarView, LimitedOfferView limitedOfferView)
 		{
 			_topBarView = topBarView;
 			_backButtonView = backButtonView;
 			_leftMenuView = leftMenuView;
 			_bottomBarView = bottomBarView;
+			_limitedOfferView = limitedOfferView;
 		}
 
 		public void Initialize()
@@ -42,6 +47,7 @@ namespace MN.Runtime.UI
 			InstallBackButton();
 			InstallLeftMenu();
 			InstallBottomBar();
+			InstallLimitedOffer();
 			
 			IsInitialized = true;
 		}
@@ -72,6 +78,13 @@ namespace MN.Runtime.UI
 			BottomBarController bottomBarController = new(_bottomBarView);
 			_bottomBarView.Initialize(Context);
 			bottomBarController.Initialize(Context);
+		}
+		
+		private void InstallLimitedOffer()
+		{
+			LimitedOfferController limitedOfferController = new(_limitedOfferView);
+			_limitedOfferView.Initialize(Context);
+			limitedOfferController.Initialize(Context);
 		}
 	}
 }
